@@ -27,27 +27,18 @@ while opcaoMenu != 4:
 3 -> Excluir Livros
 4 -> Encerrar o programa
 Qual opção: '''))  
-        while True:
-            if opcaoMenu == 1:  
-                livro['Nome'] =  str(input('Nome do Livro: '))
-                livro['Editora'] =  str(input('Editora: '))
-                livro['Autor'] =  str(input('Autor: '))
-                livro['Genero'] =  str(input('Genêro: '))
-                livro['Ano Publicação'] =  int(input('Ano de Publicação: '))
-                livro['ISBN'] =  int(input('ISBN: '))
+        if opcaoMenu == 1:
+            print('1')
+        elif opcaoMenu == 2:
+            print('2')
+        elif opcaoMenu == 3:
+            print('3')
+        elif opcaoMenu == 4:
+            print('4')
+        else:
+            print('Opcão inválida')
+            sleep(1) 
 
-                livraria.append(livro.copy())
-                while True:
-                    resp = str(input('Quer continuar? [S/N] ')).upper()[0]
-                    if resp in 'SN':
-                        break
-                    print('ERRO! Responda apensa S ou N')
-                if resp in 'N':
-                    break 
-            else:
-                print('Opção inválida')
-                sleep(1)
-                break          
     except:
         print('Opcão inválida\n')
         sleep(1) 
