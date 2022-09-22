@@ -19,52 +19,54 @@ Opção criar livro:
 while True:
     print('Vamos cadastrar seu novo livro')
 
-    '''nomeLivro = str(input('Nome do livro: '))
+    '''
+    nomeLivro = str(input('Nome do livro: '))
     editoraLivro = str(input('Nome da editora: '))
     autorLivro = str(input('Nome do autor: '))
     generoLivro = str(input('Genero do livro: '))
-    anoLivro = str(input('Ano do livro: '))'''
+    anoLivro = str(input('Ano do livro: '))
+    '''
     isbnLivro = str(input('ISBN do livro: '))
 
-    isbnLivro = isbnLivro.replace("-","") 	# remove -
-    isbnLivro = isbnLivro.replace(" ","") 	# remove whitespace
+    isbnLivro = isbnLivro.replace('-','') 	# remove -
+    isbnLivro = isbnLivro.replace(' ','') 	# remove espaco
 
-    #complile regex expressions
-    type10 = re.compile(r"^\d{10}$") # 10 digit
-    type10x = re.compile(r"^\d{9}X$") # 9 digit with X
-    type13 = re.compile(r"^\d{13}$") # 13 digit
+    #compilando regex
+    digito10 = re.compile(r'^\d{10}$') # 10 dígitos
+    digito10x = re.compile(r'^\d{9}X$') # 9 dígitos com X
+    digito13 = re.compile(r'^\d{13}$') # 13 dígitos
 
-    success = "ISBNLisbnLivro is valid!"
-    fail = "ISBNLisbnLivro is invalid."
+    sucesso = 'ISBN valido!'
+    falhou = 'ISBN não valido.'
 
-    #10 digit ISBNLisbnLivro logic
-    if type10.match(isbnLivro) or type10x.match(isbnLivro):
-        factor = len(isbnLivro)
+    #10 dígitos ISBN
+    if digito10.match(isbnLivro) or digito10x.match(isbnLivro):
+        fator = len(isbnLivro)
         total = 0
         for digit in isbnLivro:
-            if digit == "X": 
+            if digit == 'X': 
                 digit = 10
-            total += (int(digit)*factor)
-            factor -= 1
+            total += (int(digit)*fator)
+            fator -= 1
         if total % 11 == 0 :
-            print('success')
+            print(sucesso)
         else:
-            print("fail")
+            print(falhou)
 
-    #13 digit ISBNLisbnLivro logic
-    elif type13.match(isbnLivro):
+    #13 dígito ISBN
+    elif digito13.match(isbnLivro):
         total = 0
-        counter = 1
+        contador = 1
         for digit in isbnLivro:
             digit = int(digit)
-            if counter % 2 == 0:
+            if contador % 2 == 0:
                 digit = digit * 3
-            counter += 1
+            contador += 1
             total += digit
         if total % 10 == 0 :
-            print ('success')
+            print(sucesso)
         else:
-            print("fail")
-    else:  #neither 10 nor 13 digits
-        print("fail")
+            print(falhou)
+    else:  #Nem 10 nem 13 digits
+        print(falhou)
 
