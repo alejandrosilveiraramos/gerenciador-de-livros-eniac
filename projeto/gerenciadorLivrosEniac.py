@@ -1,11 +1,18 @@
-#Dev (Teste de codigos antes da homolog) Testar conjunto de codigos
+print('\nLista de Livros Cadastrados')
+cont = 0
+print('-' * 30)
+for livro in lista_livros:
+    cont += 1
+    print('Livro ', cont, livro["nome"])
+    print('\n', 'Nome: ', livro["nome"], '\n', 'Ano: ', livro["ano"], '\n', 'Autor: ', livro["autor"], '\n', 'ISBN: ', livro["ISBN"])
+    print('-' * 30)
 
-#menu // Felipe
+escolha = int(input('Qual livro deseja apagar ? '))
 
-#1 cadastro livro // Alejandro
-
-#2 listar os livros cadastrados // David
-
-#3 excluir o livro cadastrado // Marcio e Adriano
-
-#4 finalizar o programa // MC vargas
+if escolha != lista_livros:
+    print("Esta opção não existe")
+else:
+    lista_livros.pop(escolha - 1)
+    print('=' * 30)
+    print('\nLivro Deletado\n')
+    print('=' * 30)
