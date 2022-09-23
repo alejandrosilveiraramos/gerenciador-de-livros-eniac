@@ -1,10 +1,7 @@
-
-livraria = []
-
-
 import re
 from time import sleep
 
+livraria = []
 
 print( '''                                                                
 ░░              ░░                    ░░                    ░░                    ░░    
@@ -162,6 +159,21 @@ Qual opção: '''))
                 print(linha)
  
         elif opcaoMenu == 3:
+            print('\nLista de Livros Cadastrados')
+            cont = 0
+            print('-' * 30)
+            for livro in livraria:
+                cont += 1
+                print('Livro ', cont, livro["nome"])
+                print('\n', 'Nome: ', livro["nome"], '\n', 'Ano: ', livro["ano"], '\n', 'Autor: ', livro["autor"], '\n', 'ISBN: ', livro["isbn"])
+                print('-' * 30)
+
+            escolha = int(input('Qual livro deseja apagar ? '))
+
+            livraria.pop(escolha - 1)
+            print('=' * 30)
+            print('\nLivro Deletado\n')
+            print('=' * 30)
             
             
         elif opcaoMenu == 4:
@@ -169,17 +181,3 @@ Qual opção: '''))
         else:
             print('Opcão inválida\n')
             sleep(1) 
-
-
-
-
-
-
-
-
-
-        
-                 
-              
-    
-
