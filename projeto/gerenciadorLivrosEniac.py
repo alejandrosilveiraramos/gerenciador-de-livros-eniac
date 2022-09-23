@@ -1,22 +1,6 @@
 import re
 
-# Dev
-
-'''
-Opção criar livro:
-
-    - O programa deve perguntar as informações cadastrais, fazer a verificação do isbnLivroLivro e, caso esteja tudo nos conformes,
-
-    adicionar o livro mostrando uma mensagem de sucesso;
-
-    - Caso tenha algum problema com o ISBN, o código deverá mostrar uma mensagem de erro e não cadastrar o livro, mostrando
-
-    o menu novamente;
-
-    - Os dados cadastrais do livro constam nos requisitos abaixo;
-'''
-
-livro = '''                                                                
+print( '''                                                                
 ░░              ░░                    ░░                    ░░                    ░░    
                                                                                         
                                                                                         
@@ -41,8 +25,7 @@ livro = '''
                                                                                         
                                                                                         
 ░░                                                                           
-      '''
-print(livro.center(50))
+      ''')
 
 while True:
     print('Vamos cadastrar seu novo livro')
