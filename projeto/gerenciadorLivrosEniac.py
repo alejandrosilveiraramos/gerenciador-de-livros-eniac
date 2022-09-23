@@ -1,5 +1,6 @@
 import re
 
+
 print( '''                                                                
 ░░              ░░                    ░░                    ░░                    ░░    
                                                                                         
@@ -27,6 +28,7 @@ print( '''
 ░░                                                                           
       ''')
 
+
 while True:
     print('Vamos cadastrar seu novo livro')
 
@@ -50,6 +52,7 @@ while True:
         digito10x = re.compile(r'^\d{9}X$') # 9 dígitos com X
         digito13 = re.compile(r'^\d{13}$') # 13 dígitos
 
+ producao-alejandro
         sucesso = 'ISBN valido!'
         falhou = 'ISBN não valido. \nTente novamente...'
 
@@ -93,3 +96,42 @@ while True:
     break
 
 print('deu boa')
+
+#4 finalizar o programa // MC vargas
+from time import sleep
+
+decoracao = '-=' * 5 
+
+livraria = []
+livro = {}
+
+opcaoMenu = 0
+
+while opcaoMenu != 4:
+        print(decoracao, 'Cadastro de Livros', decoracao)
+        opcaoMenu = int(input('''\nEscolha uma das opções abaixo:
+1 -> Cadastrar Livro
+2 -> Listar Livros
+3 -> Excluir Livros
+4 -> Encerrar o programa
+Qual opção: '''))  
+        if opcaoMenu == 1:
+            print('1')
+        elif opcaoMenu == 2:
+            print('2')
+        elif opcaoMenu == 3:
+            print('3')
+        elif opcaoMenu == 4:
+            print('Programa Finalizado.')
+        else:
+            print('Opcão inválida\n')
+            sleep(1) 
+
+
+
+
+        
+                 
+              
+    
+
