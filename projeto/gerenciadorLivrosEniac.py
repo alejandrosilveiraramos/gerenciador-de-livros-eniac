@@ -34,13 +34,13 @@ Qual opção: '''))
         elif opcaoMenu == 3:
             print('3')
         elif opcaoMenu == 4:
-            print('4')
+            print('Programa Finalizado.')
         else:
-            print('Opcão inválida')
+            print('Opcão inválida\n')
             sleep(1) 
 
     except:
-        print('Opcão inválida\n')
+        print('Opção Inválida, Favor digitar as opções do menu.\n')
         sleep(1) 
 
 
