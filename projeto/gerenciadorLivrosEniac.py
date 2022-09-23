@@ -1,200 +1,7 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 livraria = []
 
-#cadastro = "S"
-#while cadastro == "S":
-while True:
-    nome = str(input("Informe o Nome do livro: "))
-    editora = str(input("Informe a Editora do livro: "))
-    autor = str(input("Informe o Autor do livro: "))
-    genero = str(input("Informe o Gênero do livro: "))
-    ano = str(input("Informe o Ano de lançamento do livro: "))
-    isbn = str(input("Informe o ISBN do livro: "))
 
-    livro = {'Nome': nome,
-          'Editora': editora,
-          'Autor': autor,
-          'Genero': genero,
-          'Ano': ano,
-          'ISBN': isbn}
-    
-    livraria.append(livro)
-
-    cadastro = " "
-    while cadastro not in "SN":
-        cadastro = str(input("Deseja cadastrar outro livro? [ S ] ou [ N ]. ")).upper().strip()
-    if cadastro == "n":
-        break    
-
-# Verifica se a lista está vazia
-if len(livraria) == 0:
-    # Imprime messagem de lista vazia
-    print("Não ha livros cadastrado.")
-else:
-    # Decoração, cria um linha usando polimorfismo
-    linha = "-" * 193
-
-    # Imprime uma linha
-    print(linha)
-    # Estrutura de repetição para criar as labels da tabela
-    for label in livro:
-        # Imprime as labels com espaço de 30 caracteres e centralizado
-        print(f"|\033[32m {label:^30}\033[m", end="")
-    # Imprime um "|" no final da linha e cria a próxima linha
-    print("|")
-    # Imprime uma linha
-    print(linha)
-    # Estrutura de repetição onde "indLis" assume o valor do indice da lista
-    # e "campos" assume os valores das Keys e Values.
-    for indLis, campos in enumerate(livraria):
-        # Estrutuda de repetição onde se imprime os dados do dicionário
-        for indDic in campos.values():
-            # imprime os dados do dicionário e formata para que não ultrapasse os 30 caracteres
-            print("| {:30}".format(indDic [0:29]), end="")
-        # Imprime um "|" no final da linha e cria a próxima linha
-        print("|")
-    # Imprime uma linha
-    print(linha)
-    print("teste")
-=======
 import re
 from time import sleep
 
@@ -233,8 +40,9 @@ livro = {}
 
 opcaoMenu = 0
 
+print(decoracao, 'Gerenciador livros Eniac', decoracao)
 while opcaoMenu != 4:
-        print(decoracao, 'Cadastro de Livros', decoracao)
+        
         opcaoMenu = int(input('''\nEscolha uma das opções abaixo:
 1 -> Cadastrar Livro
 2 -> Listar Livros
@@ -308,6 +116,17 @@ Qual opção: '''))
                         print(falhou)
                     
                 
+                livro = {
+                    'nome': nomeLivro,
+                    'editora': editoraLivro,
+                    'autor': autorLivro,
+                    'genero': generoLivro,
+                    'ano': anoLivro,
+                    'isbn': isbnLivro
+                }
+                
+                livraria.append(livro)
+
                 resp = ' '
                 while resp not in 'SsNn':
                     resp = str(input('Deseja cadastrar outro livro? '))
@@ -316,9 +135,35 @@ Qual opção: '''))
                     break
             
         elif opcaoMenu == 2:
-            print('2')
+ 
+            # Verifica se a lista está vazia
+            if len(livraria) == 0:
+                
+                print("Não ha livros cadastrado.")
+            else:
+                
+                linha = "-" * 193
+
+                print(linha)
+                for label in livro:
+                    print(f"|\033[32m {label:^30}\033[m", end="")
+          
+                print("|")
+              
+                print(linha)
+
+                for indLis, campos in enumerate(livraria):
+                  
+                    for indDic in campos.values():
+                        
+                        print("| {:30}".format(indDic [0:29]), end="")
+                    
+                    print("|")
+                print(linha)
+ 
         elif opcaoMenu == 3:
-            print('3')
+            
+            
         elif opcaoMenu == 4:
             print('Programa Finalizado.')
         else:
