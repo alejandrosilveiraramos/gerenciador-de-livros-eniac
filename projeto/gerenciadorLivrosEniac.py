@@ -1,6 +1,5 @@
 #Dev (Teste de codigos antes da homolog) Testar conjunto de codigos
 
-#menu // Felipe
 
 #1 cadastro livro // Alejandro
 
@@ -19,7 +18,6 @@ livro = {}
 opcaoMenu = 0
 
 while opcaoMenu != 4:
-    try:
         print(decoracao, 'Cadastro de Livros', decoracao)
         opcaoMenu = int(input('''\nEscolha uma das opções abaixo:
 1 -> Cadastrar Livro
@@ -38,10 +36,6 @@ Qual opção: '''))
         else:
             print('Opcão inválida\n')
             sleep(1) 
-
-    except:
-        print('Opção Inválida, Favor digitar as opções do menu.\n')
-        sleep(1) 
 
 
 
