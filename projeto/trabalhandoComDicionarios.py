@@ -20,27 +20,32 @@ while cadastro == "S":
 
     cadastro = str(input("Deseja cadastrar outro livro? [ S ] ou [ N ]. ")).upper().strip()
 
-# Decoração, cria um linha usando polimorfismo
-linha = "-" * 193
+# Verifica se a lista está vazia
+if len(livraria) == 0:
+    # Imprime messagem de lista vazia
+    print("Não ha livros cadastrado.")
+else:
+    # Decoração, cria um linha usando polimorfismo
+    linha = "-" * 193
 
-# Imprime uma linha
-print(linha)
-# Estrutura de repetição para criar as labels da tabela
-for label in livro:
-    # Imprime as labels com espaço de 30 caracteres e centralizado
-    print(f"|\033[32m {label:^30}\033[m", end="")
-# Imprime um "|" no final da linha e cria a próxima linha
-print("|")
-# Imprime uma linha
-print(linha)
-# Estrutura de repetição onde "indLis" assume o valor do indice da lista
-# e "campos" assume os valores das Keys e Values.
-for indLis, campos in enumerate(livraria):
-    # Estrutuda de repetição onde se imprime os dados do dicionário
-    for indDic in campos.values():
-        # imprime os dados do dicionário e formata para que não ultrapasse os 30 caracteres
-        print("| {:30}".format(indDic [0:29]), end="")
+    # Imprime uma linha
+    print(linha)
+    # Estrutura de repetição para criar as labels da tabela
+    for label in livro:
+        # Imprime as labels com espaço de 30 caracteres e centralizado
+        print(f"|\033[32m {label:^30}\033[m", end="")
     # Imprime um "|" no final da linha e cria a próxima linha
     print("|")
-# Imprime uma linha
-print(linha)
+    # Imprime uma linha
+    print(linha)
+    # Estrutura de repetição onde "indLis" assume o valor do indice da lista
+    # e "campos" assume os valores das Keys e Values.
+    for indLis, campos in enumerate(livraria):
+        # Estrutuda de repetição onde se imprime os dados do dicionário
+        for indDic in campos.values():
+            # imprime os dados do dicionário e formata para que não ultrapasse os 30 caracteres
+            print("| {:30}".format(indDic [0:29]), end="")
+        # Imprime um "|" no final da linha e cria a próxima linha
+        print("|")
+    # Imprime uma linha
+    print(linha)
