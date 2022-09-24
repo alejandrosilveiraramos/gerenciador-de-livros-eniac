@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 from time import sleep
 
 livraria = []
@@ -29,27 +30,26 @@ print( '''
                                                                                         
 ░░                                                                           
       ''')
-
-decoracao = '-=' * 5 
-
 livraria = []
 livro = {}
 
 opcaoMenu = 0
 
+decoracao = '-=' * 5 
 print(decoracao, 'GERENCIADOR DE LIVROS ENIAC', decoracao)
 while opcaoMenu != 4:
         
-        opcaoMenu = int(input('''\nEscolha uma das opções abaixo:
+        sleep(1.1)
+        opcaoMenu = int(input('''Menu \nEscolha uma das opções abaixo: \n
 1 -> Cadastrar Livro
 2 -> Listar Livros
 3 -> Excluir Livros
-4 -> Encerrar o programa
+4 -> Encerrar o programa\n
 Qual opção: '''))  
         if opcaoMenu == 1:
             
             while True:
-                print('Vamos cadastrar seu novo livro')
+                print('\nVamos cadastrar seu novo livro:\n')
 
                 #ficha cadastral
                 nomeLivro = str(input('Nome do livro: '))
@@ -64,19 +64,27 @@ Qual opção: '''))
                     isbnLivro = str(input('ISBN do livro: '))
 
                     isbnLivro = isbnLivro.replace('-','') 	# remove -
-                    isbnLivro = isbnLivro.replace(' ','') 	# remove espaco
+                    isbnLivro = isbnLivro.replace(' ','') 	# remove espaco  
                     
                     #compilando regex
                     digito10 = re.compile(r'^\d{10}$') # 10 dígitos
                     digito10x = re.compile(r'^\d{9}X$') # 9 dígitos com X
                     digito13 = re.compile(r'^\d{13}$') # 13 dígitos
 
-                
-                    sucesso = 'ISBN valido!'
-                    falhou = 'ISBN não valido. \nTente novamente...'
+                    c = Counter(isbnLivro)
+                    quantidade = list(c.values())[0]  # primeiro e talvez único valor da lista
+
+                    
+                    sucesso = '\nISBN valido!\n'
+                    falhou = '\nISBN não valido. \nTente novamente...\n'
+                    
+                    #numeros iguais
+                    
+                    if (quantidade == len(isbnLivro)) == True:# se a quantidade for igual, todos os itens são iguais.
+                        print(falhou)       
 
                     #10 dígitos ISBN
-                    if digito10.match(isbnLivro) or digito10x.match(isbnLivro):
+                    elif digito10.match(isbnLivro) or digito10x.match(isbnLivro):
                         fator = len(isbnLivro)
                         total = 0
                         
@@ -126,7 +134,7 @@ Qual opção: '''))
 
                 resp = ' '
                 while resp not in 'SsNn':
-                    resp = str(input('Deseja cadastrar outro livro? '))
+                    resp = str(input('Deseja cadastrar outro livro? S/N '))
                     
                 if resp in 'Nn':
                     break
@@ -136,7 +144,7 @@ Qual opção: '''))
             # Verifica se a lista está vazia
             if len(livraria) == 0:
                 
-                print("Não ha livros cadastrado.")
+                print("\nNão ha livros cadastrado.")
             else:
                 
                 linha = "-" * 193
@@ -184,20 +192,18 @@ Qual opção: '''))
                     print("|")
                 print(linha)
 
-            escolha = str(input('Qual livro deseja apagar ? '))
+            escolha = str(input('Qual livro deseja apagar? '))
 
             for i in range(len(livraria)):
                 if livraria[i]['nome'] == escolha:
                     del livraria[i]
                     break
 
-            print('=' * 30)
-            print('\nLivro Deletado\n')
-            print('=' * 30)
-            
+            print('\nLivro deletado com sucesso!\n')
             
         elif opcaoMenu == 4:
-            print('Programa Finalizado.')
+            print("\nSistema finalizado com sucesso.\n")
+            
         else:
-            print('Opcão inválida\n')
-            sleep(1) 
+            print('Opcão inválida, tente novamente!')
+         
