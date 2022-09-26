@@ -1,3 +1,4 @@
+
 import re
 from collections import Counter
 from time import sleep
@@ -211,3 +212,4 @@ Escolha uma das opções abaixo:
         else:
             print('\n\033[31mOpcão inválida, tente novamente!\033[m\n')
          
+
