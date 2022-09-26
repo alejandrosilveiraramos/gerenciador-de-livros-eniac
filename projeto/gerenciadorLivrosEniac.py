@@ -196,15 +196,22 @@ Escolha uma das opções abaixo:
                     
                     print('|')
                 print(linha)
-
-                escolha = str(input('\033[96mDigite o nome do livro para ser deletado:\033[m '))
-
-                for i in range(len(livraria)):
-                    if livraria[i]['nome'] == escolha:
-                        del livraria[i]
-                        break
-
-                print('\n\033[32mLivro deletado com sucesso!\033[m\n')
+                
+                nomeValidador = 0
+                while nomeValidador != 1:
+                    escolha = str(input('\033[96mDigite o nome do livro para ser deletado:\033[m '))
+                    
+                    for i in range(len(livraria)):
+                        if livraria[i]['nome'] != escolha:
+                            sleep(.5)
+                            print('\n\033[31mNome inválido!\033[m \nTente novamente\n')
+                            sleep(.5)
+                            
+                        elif livraria[i]['nome'] == escolha:
+                            del livraria[i]
+                            print('\n\033[32mLivro deletado com sucesso!\033[m\n')
+                            nomeValidador = 1
+                    
             
         elif opcaoMenu == '4':
             print('\n\033[32mSistema finalizado com sucesso.\033[m\n')
