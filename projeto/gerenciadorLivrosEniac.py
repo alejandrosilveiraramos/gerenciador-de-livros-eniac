@@ -196,21 +196,30 @@ Escolha uma das opções abaixo:
                     
                     print('|')
                 print(linha)
-                
-                nomeValidador = 0
-                while nomeValidador != 1:
-                    escolha = str(input('\033[96mDigite o nome do livro para ser deletado:\033[m '))
-                    
-                    for i in range(len(livraria)):
-                        if livraria[i]['nome'] != escolha:
-                            sleep(.5)
-                            print('\n\033[31mNome inválido!\033[m \nTente novamente\n')
-                            sleep(.5)
-                            
-                        elif livraria[i]['nome'] == escolha:
-                            del livraria[i]
-                            print('\n\033[32mLivro deletado com sucesso!\033[m\n')
-                            nomeValidador = 1
+              
+            fim = False
+            while fim != True:
+                if len(livraria) == 0:
+                    print("Não existem livros cadastrados.")
+                    fim = True
+                else:
+                    deletado = 0
+                    escolha = str(input("Digite o nome do livro para ser deletado: "))
+                    for indLis, campos in enumerate(livraria): 
+                        if livraria[indLis]['nome'] == escolha:
+                            del livraria[indLis]
+                            deletado += 1 
+                        else:
+                            fim = False
+                    if deletado > 0:
+                        print("Livro deletado com sucesso.")
+                        teste = str(input("Deseja excluir outro livro [S] ou [N] ")).upper()
+                        if teste == "S":
+                            fim = False
+                        else:
+                            fim = True
+                    else:
+                        print("Livro não cadastrado.")
                     
             
         elif opcaoMenu == '4':
