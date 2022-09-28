@@ -177,7 +177,7 @@ Escolha uma das opções abaixo:
                 print(linha)
                 cont = 0
                 for label in livro:
-                    print(f"| {label[0:espacoCampo[cont]]:^{tamanhoCampo[cont]}} ", end="")
+                    print(f"| \033[32m{label.upper()[0:espacoCampo[cont]]:^{tamanhoCampo[cont]}}\033[m ", end="")
                     cont += 1
                 print("|")
                 print(linha)
@@ -243,12 +243,14 @@ Escolha uma das opções abaixo:
                             del livraria[indLis]
                             deletado += 1 
                         else:
-                            print('\n\033[31mNão existe livro cadastrado com esse nome.\033[m')
                             acaoDeletar = False
                             
                     if deletado > 0:
                         print("\n\033[32mLivro deletado com sucesso.\033[m\n")        
-                        resp = ' '    
+                        resp = ' '
+                    elif deletado == 0:
+                        print('\n\033[31mNão existe livro cadastrado com esse nome.\033[m')
+                        acaoDeletar = False
                         
                     while resp not in 'SsNn':
                         resp = str(input('\033[96mDeseja deletar outro livro? S/N: \033[m'))
