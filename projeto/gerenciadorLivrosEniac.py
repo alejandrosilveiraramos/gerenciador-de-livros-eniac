@@ -143,6 +143,8 @@ Escolha uma das opções abaixo:
                 resp = ' '
                 while resp not in 'SsNn':
                     resp = str(input('\033[96mDeseja cadastrar outro livro? S/N:\033[m '))
+                    if resp not in 'SsNn':
+                        print('\n\033[31mOpção inválida!\033[m \nTente novamente\n')
                     
                 if resp in 'Nn':
                     break
@@ -191,7 +193,7 @@ Escolha uma das opções abaixo:
  
         elif opcaoMenu == '3':
             if len(livraria) == 0:
-                print('\033[31mNão existem livros cadastrados.\033[m \nEscolha a opção 1 no Menu para cadastrar um livro')
+                print('\n\033[31mNenhum livro cadastrado.\033[m\n\nEscolha a opção 1 \033[96m-> Cadastrar Livro\033[m no Menu para cadastrar um livro')
             else:
                 # Calcula o tamanho de cada campo da tabela
 
@@ -229,30 +231,38 @@ Escolha uma das opções abaixo:
                     print("|")
                 print(linha)
               
-            fim = False
-            while fim != True:
+            acaoDeletar = False
+            while acaoDeletar != True:
                 if len(livraria) == 0:
-                    print("Não existem livros cadastrados.")
-                    fim = True
+                    acaoDeletar = True
                 else:
                     deletado = 0
-                    escolha = str(input("Digite o nome do livro para ser deletado: "))
+                    escolha = str(input("\n\033[96mDigite o nome do livro para ser deletado: \033[m"))
                     for indLis, campos in enumerate(livraria): 
                         if livraria[indLis]['nome'] == escolha:
                             del livraria[indLis]
                             deletado += 1 
                         else:
-                            fim = False
+                            print('\n\033[31mNão existe livro cadastrado com esse nome.\033[m')
+                            acaoDeletar = False
+                            
                     if deletado > 0:
-                        print("Livro deletado com sucesso.")
-                        teste = str(input("Deseja excluir outro livro [S] ou [N] ")).upper()
-                        if teste == "S":
-                            fim = False
-                        else:
-                            fim = True
-                    else:
-                        print("Livro não cadastrado.")
-                    
+                        print("\n\033[32mLivro deletado com sucesso.\033[m\n")        
+                        resp = ' '    
+                        
+                    while resp not in 'SsNn':
+                        resp = str(input('\033[96mDeseja deletar outro livro? S/N: \033[m'))
+                        if resp not in 'SsNn':
+                            print('\n\033[31mOpção inválida!\033[m \nTente novamente\n')  
+                             
+                    if resp in 'Ss':
+                        acaoDeletar = False
+                    elif resp in 'Nn':
+                        acaoDeletar = True
+
+                    if len(livraria) == 0:
+                        print('\n\033[31mNenhum livro cadastrado.\033[m\n\nEscolha a opção 1 \033[96m-> Cadastrar Livro\033[m no Menu para cadastrar um livro') 
+
             
         elif opcaoMenu == '4':
             print('\n\033[32mSistema finalizado com sucesso.\033[m\n')
