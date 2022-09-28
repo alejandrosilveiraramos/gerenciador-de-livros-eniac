@@ -4,6 +4,7 @@ from collections import Counter
 from time import sleep
 
 livraria = []
+livro = {}
 tamanhoCampo = [8, 8, 8, 8, 8, 8]
 espacoCampo = [8, 8, 8, 8, 8, 8]
 
@@ -34,9 +35,6 @@ print( '''
 ░░                                                                           
       ''')
 
-
-livraria = []
-livro = {}
 
 opcaoMenu = 0
 
@@ -279,5 +277,7 @@ Escolha uma das opções abaixo:
 
 '''
 isnb válido para teste
-9780306406157
+978-0-306-40615-7    13 digitos
+99921-58-10-7        10 digitos
+0-8044-2957-X        9+X
 '''
