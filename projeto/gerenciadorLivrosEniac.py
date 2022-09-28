@@ -4,6 +4,8 @@ from collections import Counter
 from time import sleep
 
 livraria = []
+tamanhoCampo = [8, 8, 8, 8, 8, 8]
+espacoCampo = [8, 8, 8, 8, 8, 8]
 
 print( '''                                                                
 ░░              ░░                    ░░                    ░░                    ░░    
@@ -141,77 +143,128 @@ Escolha uma das opções abaixo:
                 resp = ' '
                 while resp not in 'SsNn':
                     resp = str(input('\033[96mDeseja cadastrar outro livro? S/N:\033[m '))
+                    if resp not in 'SsNn':
+                        print('\n\033[31mOpção inválida!\033[m \nTente novamente\n')
                     
                 if resp in 'Nn':
                     break
             
         elif opcaoMenu == '2':
  
-            # Verifica se a lista está vazia
             if len(livraria) == 0:
-                
-                print('\n\033[31mNão existem livros cadastrados.\033[m \nEscolha a opção 1 no Menu para cadastrar um livro')
+                print('\033[31mNão existem livros cadastrados.\033[m \nEscolha a opção 1 no Menu para cadastrar um livro')
             else:
-                
-                linha = '-' * 193
+                # Calcula o tamanho de cada campo da tabela
 
+                for x, y in enumerate(livraria):
+                    cont = 0
+                    for i in y.values():
+                        if len(i) <= 6:
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        elif (len(i) > 6) and (len(i) < 30):
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        elif len(i) >= 30:
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        cont += 1       
+
+                linha ="-" * (sum(tamanhoCampo) + 7 + 12)
                 print(linha)
+                cont = 0
                 for label in livro:
-                    print('|\033[32m {:^30}\033[m'.format(label.upper()), end='')
-          
-                print('|')
-              
+                    print(f"| \033[32m{label.upper()[0:espacoCampo[cont]]:^{tamanhoCampo[cont]}}\033[m ", end="")
+                    cont += 1
+                print("|")
                 print(linha)
 
                 for indLis, campos in enumerate(livraria):
-                  
+                    cont = 0
                     for indDic in campos.values():
-                        
-                        print('| {:30}'.format(indDic [0:29]), end='')
-                    
-                    print('|')
+                        print(f"| {indDic[0:espacoCampo[cont]]:{tamanhoCampo[cont]}} ", end="")
+                        cont +=1
+                    print("|")
                 print(linha)
+
  
         elif opcaoMenu == '3':
             if len(livraria) == 0:
-                
-                print('\033[31mNão existem livros cadastrados.\033[m \nEscolha a opção 1 no Menu para cadastrar um livro')
+                print('\n\033[31mNenhum livro cadastrado.\033[m\n\nEscolha a opção 1 \033[96m-> Cadastrar Livro\033[m no Menu para cadastrar um livro')
             else:
-                
-                linha = '-' * 193
+                # Calcula o tamanho de cada campo da tabela
 
+                for x, y in enumerate(livraria):
+                    cont = 0
+                    for i in y.values():
+                        if len(i) <= 6:
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        elif (len(i) > 6) and (len(i) < 30):
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        elif len(i) >= 30:
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        cont += 1       
+
+                linha ="-" * (sum(tamanhoCampo) + 7 + 12)
                 print(linha)
+                cont = 0
                 for label in livro:
-                    print('|\033[32m {:^30}\033[m'.format(label.title()), end='')
-          
-                print('|')
-              
+                    print(f"| {label[0:espacoCampo[cont]]:^{tamanhoCampo[cont]}} ", end="")
+                    cont += 1
+                print("|")
                 print(linha)
 
                 for indLis, campos in enumerate(livraria):
-                  
+                    cont = 0
                     for indDic in campos.values():
-                        
-                        print('| {:30}'.format(indDic [0:29]), end='')
-                    
-                    print('|')
+                        print(f"| {indDic[0:espacoCampo[cont]]:{tamanhoCampo[cont]}} ", end="")
+                        cont +=1
+                    print("|")
                 print(linha)
-                
-                nomeValidador = 0
-                while nomeValidador != 1:
-                    escolha = str(input('\033[96mDigite o nome do livro para ser deletado:\033[m '))
-                    
-                    for i in range(len(livraria)):
-                        if livraria[i]['nome'] != escolha:
-                            sleep(.5)
-                            print('\n\033[31mNome inválido!\033[m \nTente novamente\n')
-                            sleep(.5)
+              
+            acaoDeletar = False
+            while acaoDeletar != True:
+                if len(livraria) == 0:
+                    acaoDeletar = True
+                else:
+                    deletado = 0
+                    escolha = str(input("\n\033[96mDigite o nome do livro para ser deletado: \033[m"))
+                    for indLis, campos in enumerate(livraria): 
+                        if livraria[indLis]['nome'] == escolha:
+                            del livraria[indLis]
+                            deletado += 1 
+                        else:
+                            acaoDeletar = False
                             
-                        elif livraria[i]['nome'] == escolha:
-                            del livraria[i]
-                            print('\n\033[32mLivro deletado com sucesso!\033[m\n')
-                            nomeValidador = 1
-                    
+                    if deletado > 0:
+                        print("\n\033[32mLivro deletado com sucesso.\033[m\n")        
+                        resp = ' '
+                    elif deletado == 0:
+                        print('\n\033[31mNão existe livro cadastrado com esse nome.\033[m')
+                        acaoDeletar = False
+                        
+                    while resp not in 'SsNn':
+                        resp = str(input('\033[96mDeseja deletar outro livro? S/N: \033[m'))
+                        if resp not in 'SsNn':
+                            print('\n\033[31mOpção inválida!\033[m \nTente novamente\n')  
+                             
+                    if resp in 'Ss':
+                        acaoDeletar = False
+                    elif resp in 'Nn':
+                        acaoDeletar = True
+
+                    if len(livraria) == 0:
+                        print('\n\033[31mNenhum livro cadastrado.\033[m\n\nEscolha a opção 1 \033[96m-> Cadastrar Livro\033[m no Menu para cadastrar um livro') 
+
             
         elif opcaoMenu == '4':
             print('\n\033[32mSistema finalizado com sucesso.\033[m\n')
@@ -220,3 +273,7 @@ Escolha uma das opções abaixo:
             print('\n\033[31mOpcão inválida, tente novamente!\033[m\n')
          
 
+"""
+isnb válido para teste
+9780306406157
+"""
