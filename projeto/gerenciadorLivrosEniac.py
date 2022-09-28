@@ -113,12 +113,16 @@ Escolha uma das opções abaixo:
                     elif digito13.match(isbnLivro):
                         total = 0
                         contador = 1
+                        
                         for digit in isbnLivro:
                             digit = int(digit)
+                            
                             if contador % 2 == 0:
                                 digit = digit * 3
+                                
                             contador += 1
                             total += digit
+                            
                         if total % 10 == 0 :
                             print(sucesso)
                             break
