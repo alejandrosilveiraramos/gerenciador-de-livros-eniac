@@ -4,6 +4,8 @@ from collections import Counter
 from time import sleep
 
 livraria = []
+tamanhoCampo = [8, 8, 8, 8, 8, 8]
+espacoCampo = [8, 8, 8, 8, 8, 8]
 
 print( '''                                                                
 ░░              ░░                    ░░                    ░░                    ░░    
@@ -147,30 +149,45 @@ Escolha uma das opções abaixo:
             
         elif opcaoMenu == '2':
  
-            # Verifica se a lista está vazia
             if len(livraria) == 0:
-                
-                print('\n\033[31mNão existem livros cadastrados.\033[m \nEscolha a opção 1 no Menu para cadastrar um livro')
+                print("Não existem livros cadastrados.")
             else:
-                
-                linha = '-' * 193
+                # Calcula o tamanho de cada campo da tabela
 
+                for x, y in enumerate(livraria):
+                    cont = 0
+                    for i in y.values():
+                        if len(i) <= 6:
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        elif (len(i) > 6) and (len(i) < 30):
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        elif len(i) >= 30:
+                            if len(i) > espacoCampo[cont]: 
+                                tamanhoCampo[cont] = len(i)
+                                espacoCampo[cont] = len(i)
+                        cont += 1       
+
+                linha ="-" * (sum(tamanhoCampo) + 7 + 12)
                 print(linha)
+                cont = 0
                 for label in livro:
-                    print('|\033[32m {:^30}\033[m'.format(label.upper()), end='')
-          
-                print('|')
-              
+                    print(f"| {label[0:espacoCampo[cont]]:^{tamanhoCampo[cont]}} ", end="")
+                    cont += 1
+                print("|")
                 print(linha)
 
                 for indLis, campos in enumerate(livraria):
-                  
+                    cont = 0
                     for indDic in campos.values():
-                        
-                        print('| {:30}'.format(indDic [0:29]), end='')
-                    
-                    print('|')
+                        print(f"| {indDic[0:espacoCampo[cont]]:{tamanhoCampo[cont]}} ", end="")
+                        cont +=1
+                    print("|")
                 print(linha)
+
  
         elif opcaoMenu == '3':
             if len(livraria) == 0:
@@ -229,3 +246,7 @@ Escolha uma das opções abaixo:
             print('\n\033[31mOpcão inválida, tente novamente!\033[m\n')
          
 
+"""
+isnb válido para teste
+
+"""
