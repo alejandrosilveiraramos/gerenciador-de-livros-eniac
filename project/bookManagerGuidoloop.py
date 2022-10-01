@@ -1,3 +1,3 @@
-from funcitions.menu import ola
+from funcitions.menu import menu
 
-ola()
+menu()
